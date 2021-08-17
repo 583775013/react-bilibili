@@ -1,6 +1,7 @@
 # dependencies
 node_modules
 .idea
+bilibili/package-lock.json
 
 # production
 /dist
