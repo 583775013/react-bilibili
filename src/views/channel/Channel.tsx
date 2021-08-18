@@ -212,7 +212,7 @@ class Channel extends React.Component<ChannelProps, ChannelState> {
     const tabBarData = [{ id: 0, name: "首页", children: []} as PartitionType]
       .concat(partitions);
 
-    tabBarData.push(new PartitionType(-1, "直播"));
+    tabBarData.push(new PartitionType(-1, "直播",false));
 
     let currentTabIndex = tabBarData.findIndex((parittion) =>
       parittion.id === parseInt(m.params.rId, 10)

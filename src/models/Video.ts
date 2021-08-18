@@ -34,8 +34,8 @@ function createVideo(data): Video {
     data.cid,
     data.initUrl,
     new UpUser(data.owner.mid, data.owner.name, data.owner.face),
-    data.tid ? new PartitionType(data.tid, data.tname) : null,
-    data.reid ? new PartitionType(data.reid, data.toptype) : null
+    data.tid ? new PartitionType(data.tid, data.tname,false) : null,
+    data.reid ? new PartitionType(data.reid, data.toptype,false) : null
   );
 }
 
@@ -52,7 +52,7 @@ function createVideoByDetail(data): Video {
     data.cid,
     "",
     new UpUser(data.owner.mid, data.owner.name, data.owner.face),
-    data.tid ? new PartitionType(data.tid, data.tname) : null,
+    data.tid ? new PartitionType(data.tid, data.tnam,false) : null,
     // data.reid ? new PartitionType(data.reid, data.toptype) : null
   );
 }
@@ -64,7 +64,7 @@ function createVideoByRanking(data): Video {
     data.pic,
     "",
     data.play,
-    data.video_review,
+    data.videoReview,
     0,
     data.duration,
     0,

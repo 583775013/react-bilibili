@@ -18,14 +18,14 @@ export default function getIndexContent() {
       getRankings(0),
     ];
     return Promise.all(promises).then(([result1, result2, result3]) => {
-      if (result1.code === "1") {
-        const partitions = result1.data["0"];
+
+      if (result1.code == "1") {
+        const partitions = result1.data;
         let oneLevels =  createPartitionTypes(partitions);
         // 过滤掉 番剧，电影，电视剧，纪录片
-        oneLevels = oneLevels.filter((partition) => [13, 23, 11, 177].indexOf(partition.id) === -1);
         dispatch(setOneLevelPartitions(oneLevels));
       }
-      if (result2.code === "1") {
+      if (result2.code == "1") {
         const data = result2.data;
         if (data) {
           const banners = data.map((item) => (
@@ -39,10 +39,9 @@ export default function getIndexContent() {
           dispatch(setBanners(banners));
         }
       }
-      if (result3.code === "1") {
-        const list = result3.data.list;
+      if (result3.code == "1") {
+        const list = result3.data;
         const rankingVideos = list.map((data) => createVideoByRanking(data));
-
         dispatch(setRankingVideos(rankingVideos));
       }
     });

@@ -1,20 +1,29 @@
 const prefix = process.env.URL_PREFIX;
 
+// 首页
 const URL_INDEX = prefix + "/index";
-const URL_ROUND_SOWING = prefix + "/round-sowing";
-
+//轮播图
+const URL_ROUND_SOWING = prefix + "/banner";
+//分类
 const URL_PARTITION = prefix + "/partitions";
-
+//排行榜
 const URL_RANKING = prefix + "/ranking";
+//分类排行榜
 const URL_RANKING_REGION = prefix + "/ranking/region";
+//当前分类排行
 const URL_RANKING_ARCHIVE = prefix + "/ranking/archive";
-
+//获取排行榜页面分类
 const URL_RANKING_PARTITION = prefix + "/ranking/partitions";
 
+//视频相亲
 const URL_VIDEO_DETAIL = prefix + "/av";
+//视频推荐
 const URL_VIDEO_RECOMMEND = prefix + "/av/recommend";
+
 const URL_VIDEO_REPLAY = prefix + "/av/replay";
+//视频弹幕
 const URL_VIDEO_BARRAG = prefix + "/av/barrage";
+//视频播放地址
 const URL_PLAY_URL = prefix + "/av/play_url";
 
 const URL_UP_USER = prefix + "/up";
