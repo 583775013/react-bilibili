@@ -12,7 +12,7 @@ const itemTitle = [
 export default function getLiveData() {
   return (dispatch: Dispatch<AnyAction>) => {
     return getLiveIndexData().then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         const moduleList = result.data.module_list;
 
         const bannerList = moduleList.find((item) => item.module_info.title === "banner位").list;

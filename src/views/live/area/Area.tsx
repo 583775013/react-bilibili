@@ -16,7 +16,7 @@ function Area() {
   
   useEffect(() => {
     getAreas().then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         setAreas(result.data.filter((data) => data.id !== 99));
       }
     });

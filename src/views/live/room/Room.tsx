@@ -41,7 +41,7 @@ function Room(props: RoomProps) {
   useEffect(() => {
 
     getUserInfo(roomData.uId).then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         const data = result.data;
         const upUser = new UpUser(
           data.mid,
@@ -58,7 +58,7 @@ function Room(props: RoomProps) {
     });
 
     getDanMuConfig(live.roomId).then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         const url = `wss://${result.data.host}/sub`;
         const chatWebSocket = new ChatWebSocket(url, live.roomId);
 

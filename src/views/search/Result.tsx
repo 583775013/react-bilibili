@@ -84,7 +84,7 @@ class Result extends React.Component<ResultProps, ResultState> {
       searchType: this.searchType,
       order: this.orderType,
     }).then((result) => {
-      if (result.code === "1") {
+      if (result.code ==="1") {
         let videos = [];
         let upUsers = [];
         let upUserCount = this.state.upUserCount;
@@ -140,13 +140,13 @@ class Result extends React.Component<ResultProps, ResultState> {
     }
   }
   private getPicUrl(url, format) {
-    const { picURL } = this.context;
-    const suffix = getPicSuffix();
-    // 默认头像
-    if (url.indexOf(".gif") !== -1) {
-      return `${picURL}?pic=${url}`;
-    }
-    return `${picURL}?pic=${url}${format + suffix}`;
+    // const { picURL } = this.context;
+    // const suffix = getPicSuffix();
+    // // 默认头像
+    // if (url.indexOf(".gif") !== -1) {
+    //   return `${picURL}?pic=${url}`;
+    // }
+    return url;
   }
   public render() {
     return (

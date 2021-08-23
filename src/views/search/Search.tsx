@@ -28,7 +28,7 @@ class Search extends React.Component<any, SearchState> {
   }
   public componentDidMount() {
     getHotwords().then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         const words = result.data.map((item) => item.keyword)
         this.setState({
           words
@@ -82,7 +82,7 @@ class Search extends React.Component<any, SearchState> {
       const content = e.currentTarget.value;
       if (content) {
         getSuggests(content).then((result) => {
-          if (result.code === "1") {
+          if (result.code == "1") {
             let suggestList = [];
             if (result.data.tag) {
               suggestList = result.data.tag.map((item) => ({name: item.name, value: item.value}))

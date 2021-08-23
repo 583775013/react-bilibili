@@ -81,8 +81,8 @@ class UpUser extends React.Component<UpUserProps, UpUserState> {
       this.props.match.params.mId,
       this.videoPage.pageNumber,
       this.videoPage.pageSize).then((result) => {
-        if (result.code === "1") {
-          const vList = result.data.list.vlist;
+        if (result.code == "1") {
+          const vList = result.data.vlist;
           const videos = vList.map((data) => createVideoByUser(data));
           const showLoadMore = this.videoPage.pageNumber < result.data.page.count ? true : false;
           this.setState({
@@ -128,19 +128,19 @@ class UpUser extends React.Component<UpUserProps, UpUserState> {
     this.getUserVideos();
   }
   private getPicUrl(url, format) {
-    const { picURL } = this.context;
-    let suffix = ".webp";
-    if (process.env.REACT_ENV === "server") {
-      // 服务端获取图片后缀
-      suffix = this.props.staticContext.picSuffix;
-    } else {
-      suffix = getPicSuffix();
-    }
-    // 默认头像
-    if (url.indexOf(".gif") !== -1) {
-      return `${picURL}?pic=${url}`;
-    }
-    return `${picURL}?pic=${url}${format + suffix}`;
+    // const { picURL } = this.context;
+    // let suffix = ".webp";
+    // if (process.env.REACT_ENV === "server") {
+    //   // 服务端获取图片后缀
+    //   suffix = this.props.staticContext.picSuffix;
+    // } else {
+    //   suffix = getPicSuffix();
+    // }
+    // // 默认头像
+    // if (url.indexOf(".gif") !== -1) {
+    //   return `${picURL}?pic=${url}`;
+    // }
+    return url;
   }
   public render() {
     const { upUser }  = this.props;

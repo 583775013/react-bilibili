@@ -91,7 +91,7 @@ function Tab(props: TabProps) {
     }, 5000);
 
     getRoomGifts().then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         gifts = result.data;
       }
     });

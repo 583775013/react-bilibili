@@ -57,8 +57,8 @@ function List(props: ListProps) {
       page: livePage.pageNumber,
       pageSize: livePage.pageSize
     }).then((result) => {
-      if (result.code === "1") {
-        const list = result.data.list.map((data) => 
+      if (result.code == "1") {
+        const list = result.data.map((data) => 
           new Live(data.title, data.roomid, data.online, data.user_cover, 0, "",
             new UpUser(data.uid, data.uname, data.face))
         );

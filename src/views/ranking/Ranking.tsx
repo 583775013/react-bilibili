@@ -73,15 +73,15 @@ class Ranking extends React.Component<RankingProps, RankingState> {
     }, 10);
   }
   private getPicUrl(url, format) {
-    const { picURL } = this.context;
-    let suffix = ".webp";
-    if (process.env.REACT_ENV === "server") {
-      // 服务端获取图片后缀
-      suffix = this.props.staticContext.picSuffix;
-    } else {
-      suffix = getPicSuffix();
-    }
-    return `${picURL}?pic=${url}${format + suffix}`;
+    // const { picURL } = this.context;
+    // let suffix = ".webp";
+    // if (process.env.REACT_ENV === "server") {
+    //   // 服务端获取图片后缀
+    //   suffix = this.props.staticContext.picSuffix;
+    // } else {
+    //   suffix = getPicSuffix();
+    // }
+    return url;
   }
   public handleClick = (tab) => {
     const currentTabIndex = this.props.rankingPartitions.findIndex((parittion) =>

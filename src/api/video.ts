@@ -17,11 +17,11 @@ export function getVideoInfo(aId: number) {
 /**
  * 获取视频播放地址
  */
-export function getPlayUrl(aId: number, cId: number) {
-  return getJSON(URL_PLAY_URL + `?aId=${aId}&cId=${cId}`, null);
+export function getPlayUrl(aId: number) {
+  return getJSON(URL_PLAY_URL + `/${aId}`, null);
 }
 
-/**
+/*
  * 获取推荐视频列表
  */
 export function getRecommendVides(aId: number) {

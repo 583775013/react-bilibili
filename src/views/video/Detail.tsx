@@ -106,7 +106,7 @@ class Detail extends React.Component<DetailProps, DetailState> {
   }
   private getRecommentVides() {
     getRecommendVides(this.props.match.params.aId).then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         const recommendVides = result.data.map((item) => createVideo(item));
         this.setState({
           loading: false,
@@ -117,8 +117,7 @@ class Detail extends React.Component<DetailProps, DetailState> {
   }
   private getComments() {
     getComments(this.props.match.params.aId, this.commentPage.pageNumber).then((result) => {
-      if (result.code === "1") {
-
+      if (result.code == "1"&&result.data.page) {
         const page = result.data.page;
         const maxPage = Math.ceil(page.count / page.size);
         const showLoadMore = this.commentPage.pageNumber < maxPage ? true : false;
@@ -172,19 +171,19 @@ class Detail extends React.Component<DetailProps, DetailState> {
     this.getComments();
   }
   private getPicUrl(url, format) {
-    const { picURL } = this.context;
-    let suffix = ".webp";
-    if (process.env.REACT_ENV === "server") {
-      // 服务端获取图片后缀
-      suffix = this.props.staticContext.picSuffix;
-    } else {
-      suffix = getPicSuffix();
-    }
-    // 默认头像
-    if (url.indexOf(".gif") !== -1) {
-      return `${picURL}?pic=${url}`;
-    }
-    return `${picURL}?pic=${url}${format + suffix}`;
+    // const { picURL } = this.context;
+    // let suffix = ".webp";
+    // if (process.env.REACT_ENV === "server") {
+    //   // 服务端获取图片后缀
+    //   suffix = this.props.staticContext.picSuffix;
+    // } else {
+    //   suffix = getPicSuffix();
+    // }
+    // // 默认头像
+    // if (url.indexOf(".gif") !== -1) {
+    //   return `${picURL}?pic=${url}`;
+    // }
+    return url;
   }
   private toSpace(mId) {
     this.props.history.push({
@@ -261,7 +260,7 @@ class Detail extends React.Component<DetailProps, DetailState> {
                       <LazyLoad height="10.575rem">
                         <img src={this.getPicUrl(v.pic, "@320w_200h")} alt={v.title} />
                       </LazyLoad>
-                      <div className={style.duration}>{formatDuration(v.duration, "0#:##:##")}</div>
+                      {/* <div className={style.duration}>{v.duration}</div> */}
                     </div>
                     <div className={style.infoWrapper}>
                       <div className={style.title}>

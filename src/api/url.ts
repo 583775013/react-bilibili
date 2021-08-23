@@ -15,7 +15,7 @@ const URL_RANKING_ARCHIVE = prefix + "/ranking/archive";
 //获取排行榜页面分类
 const URL_RANKING_PARTITION = prefix + "/ranking/partitions";
 
-//视频相亲
+//视频详情
 const URL_VIDEO_DETAIL = prefix + "/av";
 //视频推荐
 const URL_VIDEO_RECOMMEND = prefix + "/av/recommend";
@@ -24,7 +24,7 @@ const URL_VIDEO_REPLAY = prefix + "/av/replay";
 //视频弹幕
 const URL_VIDEO_BARRAG = prefix + "/av/barrage";
 //视频播放地址
-const URL_PLAY_URL = prefix + "/av/play_url";
+const URL_PLAY_URL = prefix + "/av/playUrl";
 
 const URL_UP_USER = prefix + "/up";
 const URL_USER_VIDEO = prefix + "/up/video";

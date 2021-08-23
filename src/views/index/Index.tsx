@@ -46,10 +46,10 @@ class Index extends React.Component<IndexProps> {
    */
   private handleClick = (tab) => {
     // 直播
-    if (tab.id === -1) {
-      window.location.href = "/live";
-      return;
-    }
+    // if (tab.id === -1) {
+    //   window.location.href = "/live";
+    //   return;
+    // }
     if (tab.id === 0) {
       window.location.href = "/index";
     } else {
@@ -60,16 +60,16 @@ class Index extends React.Component<IndexProps> {
     this.drawerRef.current.show();
   }
   private getPicUrl(url, format) {
-    const { picURL } = this.context;
-    let suffix = ".webp";
-    if (process.env.REACT_ENV === "server") {
-      // 服务端获取图片后缀
-      suffix = this.props.staticContext.picSuffix;
-    } else {
-      suffix = getPicSuffix();
-    }
+    // const { picURL } = this.context;
+    // let suffix = ".webp";
+    // if (process.env.REACT_ENV === "server") {
+    //   // 服务端获取图片后缀
+    //   suffix = this.props.staticContext.picSuffix;
+    // } else {
+    //   suffix = getPicSuffix();
+    // }
     // picURL + "?pic=" + url + "@480w_300h.webp"
-    return `${picURL}?pic=${url}${format + suffix}`;
+    return url;
   }
   public render() {
     const { oneLevelPartitions, additionalVideos, rankingVideos } = this.props;
@@ -77,7 +77,7 @@ class Index extends React.Component<IndexProps> {
     const tabBarData = [{ id: 0, name: "首页"} as PartitionType]
       .concat(oneLevelPartitions);
 
-    tabBarData.push(new PartitionType(-1,"直播",false));
+    // tabBarData.push(new PartitionType(-1,"直播",false));
 
     let videos = rankingVideos;
     if (additionalVideos.length > 0) {

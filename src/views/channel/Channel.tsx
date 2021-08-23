@@ -98,7 +98,7 @@ class Channel extends React.Component<ChannelProps, ChannelState> {
 
     // 获取排行榜页面分类
     getRankingPartitions().then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         this.rankingPartitions = createPartitionTypes(result.data);
       }
     });
@@ -109,7 +109,7 @@ class Channel extends React.Component<ChannelProps, ChannelState> {
   private loadRecommndData() {
     const rId = this.props.match.params.rId;
     getRankingRegion({rId, day: 7}).then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         const datas = result.data.splice(0, 4);
         const recommendVideos = datas.map((data) => createVideoByRanking(data));
         this.setState({
@@ -127,10 +127,11 @@ class Channel extends React.Component<ChannelProps, ChannelState> {
       getRankingRegion({rId: partition.id, day: 7})
     );
     Promise.all(promises).then((results) => {
+      console.log("Promise");
       const partitions = [];
       for (let i = 0; i < results.length; i++) {
         const result = results[i];
-        if (result.code === "1") {
+        if (result.code == "1") {
           const partition = secondPartitions[i];
           partitions.push({
             id: partition.id,
@@ -149,10 +150,10 @@ class Channel extends React.Component<ChannelProps, ChannelState> {
    */
   private handleClick = (tab) => {
     // 直播
-    if (tab.id === -1) {
-      window.location.href = "/live";
-      return;
-    }
+    // if (tab.id === -1) {
+    //   window.location.href = "/live";
+    //   return;
+    // }
     if (tab.id === 0) {
       window.location.href = "/index";
     } else {
@@ -195,15 +196,15 @@ class Channel extends React.Component<ChannelProps, ChannelState> {
     }
   }
   private getPicUrl(url, format) {
-    const { picURL } = this.context;
-    let suffix = ".webp";
-    if (process.env.REACT_ENV === "server") {
-      // 服务端获取图片后缀
-      suffix = this.props.staticContext.picSuffix;
-    } else {
-      suffix = getPicSuffix();
-    }
-    return `${picURL}?pic=${url}${format + suffix}`;
+    // const { picURL } = this.context;
+    // let suffix = ".webp";
+    // if (process.env.REACT_ENV === "server") {
+    //   // 服务端获取图片后缀
+    //   suffix = this.props.staticContext.picSuffix;
+    // } else {
+    //   suffix = getPicSuffix();
+    // }
+    return url;
   }
   public render() {
     const { partitions, match: m } = this.props;
@@ -212,7 +213,7 @@ class Channel extends React.Component<ChannelProps, ChannelState> {
     const tabBarData = [{ id: 0, name: "首页", children: []} as PartitionType]
       .concat(partitions);
 
-    tabBarData.push(new PartitionType(-1, "直播",false));
+    // tabBarData.push(new PartitionType(-1, "直播",false));
 
     let currentTabIndex = tabBarData.findIndex((parittion) =>
       parittion.id === parseInt(m.params.rId, 10)

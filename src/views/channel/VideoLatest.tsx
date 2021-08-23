@@ -50,8 +50,8 @@ class VideoLatest extends React.Component<VideoLatestProps, VideoLatestState> {
       loading: true
     });
     getRankingArchive({tId: id, p}).then((result) => {
-      if (result.code === "1") {
-        const latestVideos = result.data.archives.map((data) => createVideoByLatest(data));
+      if (result.code == "1") {
+        const latestVideos = result.data.map((data) => createVideoByLatest(data));
         this.setState({
           currentPage: p,
           latestVideos: this.state.latestVideos.concat(latestVideos),

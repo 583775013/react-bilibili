@@ -11,7 +11,7 @@ export default function getLiveListInfo(data: {
   ) {
   return (dispatch: Dispatch<AnyAction>) => {
     return getLiveListData(data).then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         const list = result.data.list.map((data) => 
           new Live(data.title, data.roomid, data.online, data.user_cover, 0, "",
             new UpUser(data.uid, data.uname, data.face))

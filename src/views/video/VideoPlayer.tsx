@@ -104,24 +104,24 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
       });
     }
 
+    const hls = new Hls();
+    hls.loadSource(video.url);
+    hls.attachMedia(videoDOM);
+    
     // 调用play方法时触发
     videoDOM.addEventListener("play", play);
-
     // 暂停或者在缓冲后准备重新开始播放时触发
     videoDOM.addEventListener("playing", play);
-
     videoDOM.addEventListener("waiting", () => {
       this.setState({
         waiting: true
       });
     });
-
     // 非直播时处理
     if (live === false) {
       this.getBarrages();
-
       videoDOM.addEventListener("timeupdate", () => {
-        if (this.state.duration === 0) {
+        if (this.state.duration == 0) {
           this.setState({
             duration: videoDOM.duration
           });
@@ -138,7 +138,13 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
           });
         }
       });
-  
+
+      videoDOM.addEventListener('loadedmetadata', () => {
+        const currentTime = videoDOM.duration;
+        this.setState({
+          duration: currentTime
+        });
+      });
       videoDOM.addEventListener("ended", () => {
         currentTimeDOM.innerHTML = "00:00";
         progressDOM.style.width = "0";
@@ -191,7 +197,6 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
       });
       progressDOM.addEventListener("touchend", () => {
         videoDOM.currentTime = videoDOM.duration * rate;
-
         this.playOrPause();
       });   
     } else { // 直播时处理
@@ -204,7 +209,6 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
           liveDurationDOM.innerHTML = formatDuration(liveDuration, "0#:##:##");
         }, 1000);
       }
-
       // 支持m3u8，直接使用video播放
       if (videoDOM.canPlayType("application/vnd.apple.mpegurl")) {
         videoDOM.src = video.url;
@@ -240,13 +244,13 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
    * 获取弹幕列表
    */
   private getBarrages() {
-    getBarrages(this.props.video.cId)
+    getBarrages(this.props.video.aId)
       .then((result) => {
         const barrages = [];
-        if (result.code === "1") {
+        if (result.code == "1") {
           result.data.forEach((data) => {
             barrages.push({
-              type: data.type === "1" ? BarrageType.RANDOM : BarrageType.FIXED,
+              type: data.type == "1" ? BarrageType.RANDOM : BarrageType.FIXED,
               color: "#" + Number(data.decimalColor).toString(16),
               content: data.content,
               time: Number(data.time)
@@ -389,11 +393,12 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
     }
   }
   private getVideoUrl(url) {
-    const { videoURL } = this.context;
+    // const { videoURL } = this.context;
     // url = url.indexOf("https") != -1 ? encodeURIComponent(url) : `https:${encodeURIComponent(url)}`;
-    url = encodeURIComponent(url);
+    // url = encodeURIComponent(url);
     // 拼接播放源地址
-    return `${videoURL}?video=${url}`;
+    // return `${videoURL}?video=${url}`;
+    return url;
   }
   public render() {
     const { live, video } = this.props;
@@ -457,7 +462,7 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
                 </div>
                 <img className={style.pic} src={video.cover} alt={video.title} />
                 <div className={style.prePlay}>
-                  <div className={style.duration}>{formatDuration(video.duration, "0#:##:##")}</div>
+                  <div className={style.duration}>{formatDuration(this.state.duration, "0#:##")}</div>
                   <div className={style.preview} onClick={() => { this.playOrPause(); }} />
                 </div>
               </React.Fragment>

@@ -27,6 +27,9 @@ export function formatTenThousand(num: number): string {
  * ##:##:## => 0:02:00
  */
 export function formatDuration(second: number, format: string): string {
+  if(!second){
+    second=60
+}
   let date = new Date();
   date = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0);
   const tempstamp = date.getTime() + second * 1000;

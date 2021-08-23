@@ -7,7 +7,7 @@ export default function getRoomData(roomId: number) {
   return (dispatch: Dispatch<AnyAction>) => {
     const promises = [getRoomInfo(roomId), getPlayUrl(roomId)];
     return Promise.all(promises).then(([result1, result2]) => {
-      if (result1.code === "1") {
+      if (result1.code == "1") {
         const data = result1.data;
         const live = new Live(
           data.title,

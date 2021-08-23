@@ -18,12 +18,11 @@ export default function getIndexContent() {
       getRankings(0),
     ];
     return Promise.all(promises).then(([result1, result2, result3]) => {
-
       if (result1.code == "1") {
         const partitions = result1.data;
         let oneLevels =  createPartitionTypes(partitions);
-        // 过滤掉 番剧，电影，电视剧，纪录片
         dispatch(setOneLevelPartitions(oneLevels));
+        console.log("getPartitions")
       }
       if (result2.code == "1") {
         const data = result2.data;
@@ -37,12 +36,14 @@ export default function getIndexContent() {
             }
           ));
           dispatch(setBanners(banners));
+          console.log("banners")
         }
       }
       if (result3.code == "1") {
         const list = result3.data;
         const rankingVideos = list.map((data) => createVideoByRanking(data));
         dispatch(setRankingVideos(rankingVideos));
+        console.log("rankingVideos")
       }
     });
   }

@@ -6,7 +6,7 @@ import { UpUser } from "../../models";
 export default function getUser(mId: number) {
   return (dispatch: Dispatch<AnyAction>) => {
     return getUserInfo(mId).then((result) => {
-      if (result.code === "1") {
+      if (result.code == "1") {
         const data = result.data;
         const upUser = new UpUser(
           data.mid,
