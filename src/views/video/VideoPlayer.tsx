@@ -116,6 +116,9 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
       this.setState({
         waiting: true
       });
+      this.setState({
+        waiting: false
+      });
     });
     // 非直播时处理
     if (live === false) {
@@ -385,6 +388,7 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
         fullscreen: false
       });
     } else {
+      // screen.orientation.lock("portrait-primary");
       this.setState({
         isShowControlBar: false,
         isShowPlayBtn: false,
@@ -482,7 +486,7 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, VideoPlayerState
               <div className={style.wrapper}>
                 <img className={style.img} src={loading} />
                 <span className={style.text}>
-                  { live === false ? "正在缓冲" : "" }
+                  { live == false ? "正在缓冲" : "" }
                 </span>
               </div>
             </div>

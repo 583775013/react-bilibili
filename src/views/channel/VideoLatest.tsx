@@ -45,15 +45,15 @@ class VideoLatest extends React.Component<VideoLatestProps, VideoLatestState> {
   public componentDidMount() {
     this.loadLatestData(this.props.id, 1);
   }
-  private loadLatestData(id, p) {
+  private loadLatestData(id, pageNum) {
     this.setState({
       loading: true
     });
-    getRankingArchive({tId: id, p}).then((result) => {
+    getRankingArchive({tId: id, pageNum}).then((result) => {
       if (result.code == "1") {
         const latestVideos = result.data.map((data) => createVideoByLatest(data));
         this.setState({
-          currentPage: p,
+          currentPage: pageNum,
           latestVideos: this.state.latestVideos.concat(latestVideos),
           loading: false
         });

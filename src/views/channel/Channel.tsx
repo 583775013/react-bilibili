@@ -127,7 +127,6 @@ class Channel extends React.Component<ChannelProps, ChannelState> {
       getRankingRegion({rId: partition.id, day: 7})
     );
     Promise.all(promises).then((results) => {
-      console.log("Promise");
       const partitions = [];
       for (let i = 0; i < results.length; i++) {
         const result = results[i];

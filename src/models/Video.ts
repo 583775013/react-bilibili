@@ -106,16 +106,15 @@ function createVideoByUser(data): Video {
 }
 
 function createVideoBySearch(data): Video {
-  const times = data.duration.split(":");
-  const seconds = parseInt(times[0], 10) * 60 + parseInt(times[1], 10);
+  const seconds = parseInt(data.duration);
   return new  Video(
     data.aid,
     data.title,
     data.pic,
-    data.description,
+    data.title,
     data.play,
-    data.video_review,
-    data.pubdata,
+    data.danMu,
+    data.ctime,
     seconds,
     0,
     "",

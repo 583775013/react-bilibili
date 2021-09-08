@@ -84,12 +84,12 @@ class Result extends React.Component<ResultProps, ResultState> {
       searchType: this.searchType,
       order: this.orderType,
     }).then((result) => {
-      if (result.code ==="1") {
+      if (result.code =="1") {
         let videos = [];
         let upUsers = [];
         let upUserCount = this.state.upUserCount;
         if (this.searchType === SearchType.ALL) {  // 综合
-          videos = result.data.result.map((item) => createVideoBySearch(item));
+          videos = result.data.map((item) => createVideoBySearch(item));
         } else {  // up主
           upUsers = result.data.result.map((item) => ({
               videoCount: item.videos,
@@ -156,7 +156,7 @@ class Result extends React.Component<ResultProps, ResultState> {
             <div className={style.item + (this.searchType === SearchType.ALL ? " " + style.current : "")}
               onClick={() => {this.changeSearchType(SearchType.ALL)}}>综合</div>
           </div>
-          <div className={style.tabItem}>
+          {/* <div className={style.tabItem}>
             <div className={style.item + (this.searchType === SearchType.UPUSER ? " " + style.current : "")}
               onClick={() => {this.changeSearchType(SearchType.UPUSER)}}>UP主{
                 this.state.upUserCount > 0 ? (
@@ -164,7 +164,7 @@ class Result extends React.Component<ResultProps, ResultState> {
                   `(${this.state.upUserCount})`
                 ) : ""
               }</div>
-          </div>
+          </div> */}
         </div>
         {
           this.searchType === SearchType.ALL ? (
@@ -186,7 +186,7 @@ class Result extends React.Component<ResultProps, ResultState> {
                       <a href={"/video/av" + video.aId}>
                         <div className={style.imageContainer}>
                             <LazyLoad height={"3.654rem"}>
-                              <img src={this.getPicUrl("https:" + video.pic, "@200w_125h")} alt={video.title} />
+                              <img src={this.getPicUrl(video.pic, "@200w_125h")} alt={video.title} />
                             </LazyLoad>
                             <div className={style.duration}>{formatDuration(video.duration, "0#:##:##")}</div>
                         </div>
@@ -203,7 +203,9 @@ class Result extends React.Component<ResultProps, ResultState> {
                             </span>
                             <span className={style.iconBarrage} />
                             <span className={style.barrageCount}>
-                              {formatTenThousand(video.barrageCount)}
+                            {
+                      video.barrageCount ? formatTenThousand(video.barrageCount) : "0"
+                         }
                             </span>
                           </div>
                         </div>

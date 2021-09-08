@@ -1,4 +1,4 @@
 module.exports = {
   NODE_ENV: '"development"',
-  URL_PREFIX: '"http://localhost:8080"'
+  URL_PREFIX: '"https://stasurvey.com/api"'
 }
